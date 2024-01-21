@@ -1,5 +1,6 @@
 import { ITask } from "@/types/tasks";
 import React from "react";
+import Task from "./Task";
 
 interface TaskManagementListProps {
     tasks: ITask[]
@@ -16,14 +17,9 @@ const TaskManagementList: React.FC<TaskManagementListProps> = ({ tasks }) => {
         </tr>
       </thead>
       <tbody>
-        {tasks.map(task => (
-            <tr key={task.id}>
-                <td>{task.title}</td>
-                <td>{task.description}</td>
-                <td></td>
-            </tr> 
+        {tasks.map((task) => (
+            <Task key={task.id} task={task}/>
         ))}
-        
       </tbody>
     </table>
   </div>;
