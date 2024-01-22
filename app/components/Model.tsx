@@ -2,16 +2,16 @@
 interface ModelProps {
     modelOpen: boolean;
     setModalOpen: (open: boolean) => boolean | void;
+    children: React.ReactNode
 }
 
-const Model: React.FC<ModelProps> = ({ modelOpen, setModalOpen }) => {
+const Model: React.FC<ModelProps> = ({ modelOpen, setModalOpen, children }) => {
   return (
     <div className={`modal ${modelOpen ? "modal-open" : "" }`} role="dialog">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">This modal works with a hidden checkbox!</p>
+    {children}
     <div className="modal-action">
-      <label onClick={() => setModalOpen(false)} className="btn">Close!</label>
+      <label onClick={() => setModalOpen(false)} className="btn">Close</label>
     </div>
   </div>
 </div>
