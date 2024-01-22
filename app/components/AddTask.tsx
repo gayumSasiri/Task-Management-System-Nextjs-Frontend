@@ -22,8 +22,6 @@ const AddTask = () => {
             description: newTaskDescription,
             userId: "1" //todo: this should added current logged userId 
         })
-        // console.log(newTaskTitle);
-        // console.log(newTaskDescription);
         setNewTaskTitle("");
         setNewTaskDescription("");
         setModalOpen(false);
