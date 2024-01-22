@@ -26,7 +26,6 @@ export const addNewTask = async (task: ITask): Promise<ITask> => {
 const baseUrlPatch = 'http://localhost:8080/api/v1/tasks/9'; // todo: task id should not be hardcoded
 
 export const updateTask = async (task: ITask): Promise<ITask> => {
-    console.log(JSON.stringify(task));
     const res = await fetch(`${baseUrlPatch}`, {
         method: 'PATCH',
         headers: {
@@ -36,4 +35,12 @@ export const updateTask = async (task: ITask): Promise<ITask> => {
     })
     const updatedTask = await res.json();
     return updatedTask;
+}
+
+const baseUrlDelete = 'http://localhost:8080/api/v1/tasks/9'; // todo: task id should not be hardcoded
+
+export const deleteTask = async (id: string): Promise<void> => {
+    await fetch(`${baseUrlPatch}`, {
+        method: 'DELETE'
+    })
 }

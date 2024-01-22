@@ -6,7 +6,7 @@ import { MdEditNote } from "react-icons/md";
 import { FaTrashCan } from "react-icons/fa6";
 import Model from "./Model";
 import { useRouter } from "next/navigation";
-import { updateTask } from "@/api";
+import { deleteTask, updateTask } from "@/api";
 
 interface TaskProps {
     task: ITask
@@ -32,6 +32,12 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         setTaskDescriptionToEdit("");
         setOpenModelEdit(false);
         router.refresh();
+    }
+
+    const handleDeleteTask = async (id: string) => {
+        await deleteTask(id);
+        setOpenModelDelete(false);
+        router.refresh;
     }
 
     return <tr key={task.id}>
@@ -67,7 +73,18 @@ const Task: React.FC<TaskProps> = ({ task }) => {
                 </div>
             </form>
         </Model>
-        <FaTrashCan cursor="pointer" className="text-red-400" size={16} />
+        <FaTrashCan onClick={() => setOpenModelDelete(true)} cursor="pointer" className="text-red-400" size={16} />
+        <Model modelOpen={openModalDelete} setModalOpen={setOpenModelDelete}>
+            <h3 className="text-lg">Are you sure, you want to delete this task ?</h3>
+            <div className="model-action">
+                <button
+                onClick={() => handleDeleteTask(task.id)}
+                className="btn btn-outline btn-warning w-full mt-5"
+                >
+                    YES
+                </button>
+            </div>
+        </Model>
     </td>
 </tr> 
 };
